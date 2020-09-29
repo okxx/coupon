@@ -7,20 +7,13 @@ import (
 	"os"
 )
 
-const (
-	Name	 	= "Coupon"
-	Version 	= "1.0.0.x0e"
-	Usage		= "Use the built-in coupon system in go language"
-)
-
 func main() {
 	app 			:= cli.NewApp()
-	app.Name 		= Name
-	app.Usage 		= Usage
-	app.Version 	= Version
+	app.Name 		= "Coupon"
+	app.Version 	= "1.0.0.x0e"
+	app.Usage 		= "Use the built-in coupon system in go language"
 	app.Commands 	= []*cli.Command{
 		cmd.Run,
-		cmd.Install,
 	}
 	log.Fatal(app.Run(os.Args))
 }

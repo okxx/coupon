@@ -1,12 +1,12 @@
 package cmd
 
 import (
+	"coupon/internal/utils/app"
 	"github.com/urfave/cli/v2"
-	"net/http"
 )
 
 var (
-	defaultPort = "9009"
+	Port = "7077"
 
 	Run = &cli.Command{
 		Name: "run",
@@ -15,9 +15,9 @@ var (
 		Flags: []cli.Flag{
 			&cli.StringFlag{
 				Name: "port, p",
-				Value: defaultPort,
+				Value: Port,
 				Usage: "Port number",
-				DefaultText: defaultPort, // default port number
+				DefaultText: Port, // default port number
 			},
 		},
 	}
@@ -25,8 +25,11 @@ var (
 
 func runController(c *cli.Context) error {
 
-	// static {css,js}
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("template/static"))))
+	coupon := app.New()
 
-	return nil
+	coupon.Get("/", func(c *app.C) {
+
+	})
+
+	return coupon.Run(Port)
 }
