@@ -1,0 +1,11 @@
+name: coupon
+
+kind: pipeline
+type: docker
+
+steps:
+- name: backend
+  image: golang
+  commands:
+    - go get
+    - go run cmd/run.go
